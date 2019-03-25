@@ -28,10 +28,11 @@ import {
       isOpen: !this.state.isOpen
     });
   }
+  
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar color="dark" dark expand="md" >
           <NavbarBrand href="/"> <strong>To Do List</strong></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -44,7 +45,7 @@ import {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Options
+                  My Profile
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>

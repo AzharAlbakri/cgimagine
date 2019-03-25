@@ -1,0 +1,22 @@
+body{ 
+    background-image: url(./bgfin.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100%;
+}
+
+
+.title{
+    padding-top: 200px;
+
+   text-align: center;
+   color: aliceblue;
+}
+
+.container .register{
+   
+   background-color: rgb(132, 0, 255);
+   color: aliceblue;
+   
+}
