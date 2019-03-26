@@ -50,7 +50,7 @@ class ToDoList extends Component {
           <div className="card">
             {/* <Card className="mapCardN"> */}
             <CardBody>
-              <CardTitle>this.props.article.title</CardTitle>
+              <CardTitle> <strong>this.props.article.title</strong> </CardTitle>
               <CardSubtitle>this.props.article.description</CardSubtitle>
             </CardBody>
             <CardFooter>

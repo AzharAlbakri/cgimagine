@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS todos  (
     title VARCHAR(30) NOT NULL,
     description MEDIUMTEXT NOT NULL,
     owner_id integer,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-    image VARCHAR(355) NOT NULL DEFAULT '',
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(30) NOT NULL, 
     FOREIGN KEY (owner_id) REFERENCES users(id), 
     PRIMARY KEY (id)
   );

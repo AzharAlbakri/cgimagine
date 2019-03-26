@@ -116,8 +116,6 @@ app.post("/signUp", function(req, res, next) {
   });
 });
 
-
-
 //////////////////////////////////////////////////////////////
 //                          SignIn                         //
 /////////////////////////////////////////////////////////////
@@ -155,5 +153,33 @@ app.post("/signIn", function(req, res) {
     }
   });
 });
+
+//////////////////////////////////////////////////////////////
+//                        add todo                         //
+//////////////////////////////////////////////////////////////
+app.post("/addTodo", function(req, res) {
+  if (req.body.length !== 0) {
+    var title = req.body.title;
+    var description = req.body.description;
+    var owner_id = req.body.owner_id;
+    var status = "uncompleted";
+    // NOTE: Query to insert the todo information
+    var query = `insert into todos (title, description, owner_id, status)
+values
+(\"${title}\",\"${description}\",\"${owner_id}\",\"${status}\")`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send("insert successfully");
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

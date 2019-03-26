@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS todos  (
       description MEDIUMTEXT NOT NULL,
       owner_id integer,
       date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-      image VARCHAR(355) NOT NULL DEFAULT '',
+      status VARCHAR(30) NOT NULL,
       FOREIGN KEY (owner_id) REFERENCES users(id), 
       PRIMARY KEY (id)
     );
