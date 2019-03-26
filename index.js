@@ -116,4 +116,44 @@ app.post("/signUp", function(req, res, next) {
   });
 });
 
+
+
+//////////////////////////////////////////////////////////////
+//                          SignIn                         //
+/////////////////////////////////////////////////////////////
+app.post("/signIn", function(req, res) {
+  var email = req.body.email;
+  var password = req.body.password;
+
+  // NOTE: Query to get the user information
+  var query = `select * from users where email =\"${email}\"`;
+
+  // NOTE: insert post information to the database
+  dbConnection.Schema.query(query, function(err, result) {
+    console.log(result, "3456789ik");
+
+    if (result.length > 0) {
+      bcrypt.compare(req.body.password, result[0].password, function(
+        err,
+        isMatch
+      ) {
+        if (isMatch) {
+          var token = jwt.sign({ email: email }, secret, { expiresIn: "48h" });
+          console.log("toooookeeen" + token);
+          res.json({
+            email: email,
+            name: result[0].name,
+            message: "User Authenticate",
+            token: token
+          });
+        } else {
+          res.send("Password not match");
+        }
+      });
+    } else {
+      res.send(err);
+    }
+  });
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

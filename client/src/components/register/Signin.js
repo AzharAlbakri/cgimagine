@@ -14,13 +14,7 @@ class Signin extends Component {
     }
   }
 
-  routeChange = () => {
-      if(this.state.isSignedIn) {
-          let path = `/`;
-    this.props.history.push(path);
-      }
-    
-  }
+  
 
   handleChange = e => {
     this.setState({
@@ -54,10 +48,18 @@ class Signin extends Component {
     e.preventDefault();
     
   };
+
+  routeChange = () => {
+    if(this.state.isSignedIn) {
+        let path = `/`;
+  this.props.history.push(path);
+    }
+  
+}
   
   render() {
     return (
-  <div class="container">
+  <div className="container">
   <form action="" onSubmit={this.handleSubmit}>
 <h1>Sign In</h1>
 <input id="email"
