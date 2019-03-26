@@ -180,6 +180,88 @@ values
   }
 });
 
+//////////////////////////////////////////////////////////////
+//                        get todo                         //
+//////////////////////////////////////////////////////////////
 
+//get uncompleated todos
+app.get("/toDos", function(req, res) {
+  if (req.body.owner_id) {
+    var owner_id = req.body.owner_id;
+    var status = "uncompleted";
+
+    var query = `SELECT * FROM todos WHERE status = "uncompleted" AND owner_id = ${owner_id}`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send(result);
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
+
+//get compleated todos
+app.get("/toDos", function(req, res) {
+  if (req.body.owner_id) {
+    var owner_id = req.body.owner_id;
+    var status = "completed";
+
+    var query = `SELECT * FROM todos WHERE status = "completed" AND owner_id = ${owner_id}`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send(result);
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
+
+//get removed todos
+app.get("/toDos", function(req, res) {
+  if (req.body.owner_id) {
+    var owner_id = req.body.owner_id;
+    var status = "removed";
+
+    var query = `SELECT * FROM todos WHERE status = "removed" AND owner_id = ${owner_id}`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send(result);
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
+
+//get removed unvisible
+app.get("/toDos", function(req, res) {
+  if (req.body.owner_id) {
+    var owner_id = req.body.owner_id;
+    var status = "unvisible";
+
+    var query = `SELECT * FROM todos WHERE status = "unvisible" AND owner_id = ${owner_id}`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send(result);
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
