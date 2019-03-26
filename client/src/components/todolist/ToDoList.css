@@ -1,0 +1,56 @@
+.container .mapCardN {
+  /* background-color: #ffffff; */
+}
+
+.container .input {
+  background-color: #99939341;
+  margin: 20px;
+  padding: 20px;
+}
+
+.container .input input {
+  margin: 20px;
+}
+
+.container .input1 {
+  padding-left: 20px;
+  background-color: rgb(255, 255, 255);
+}
+.container .btn {
+  background-color: blueviolet;
+  padding: 10px 30px 30px 30px;
+  margin: 20px 20px 20px 0px;
+  /* margin:20px */
+}
+
+.card .card-footer {
+  padding: 0px;
+}
+
+/*  */
+
+span {
+  color: #333333;
+  padding-left: 10px;
+  float: left;
+  text-align: left;
+}
+
+/* .card .card-footer .Icon {
+  padding: 0px;
+  float: right;
+  text-align: left;
+  padding-left: 10px;
+} */
+.material-icons{
+    color: #333333;
+  padding-left: 10px;
+  float: left;
+  text-align: left;
+ }
+ a :hover{
+   color: blueviolet;
+}
+
+
+ 

@@ -20,9 +20,19 @@ import {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      name: localStorage.getItem("name"),
+      email: localStorage.getItem("email")
     };
   }
+
+  handleLogout=() => {
+    console.log('logout clicked');
+    localStorage.removeItem('token')
+    localStorage.removeItem('name')
+    localStorage.removeItem('email')
+  }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -32,7 +42,7 @@ import {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark expand="md" >
+      <Navbar  dark expand="md" style={{ backgroundColor: "#f88600" }}>
           <NavbarBrand href="/"> <strong>To Do List</strong></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -40,9 +50,8 @@ import {
               <NavItem>
                 <NavLink href="/todolist/">My To Do List</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">Sign in</NavLink>
-              </NavItem>
+             
+              {this.state.name?
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret >
                   My Profile
@@ -55,11 +64,13 @@ import {
                     Archived ToDos
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
+                  <DropdownItem onClick={this.handleLogout} href="/">
                     Logout
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown>: <NavItem>
+                <NavLink href="/Signin/">Sign in</NavLink>
+              </NavItem>}
             </Nav>
           </Collapse>
         </Navbar>

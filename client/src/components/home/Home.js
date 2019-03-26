@@ -4,6 +4,12 @@ import { Button } from "reactstrap";
 import "./Home.css";
 import BG from "./bg.jpg";
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  this.state={
+    token: localStorage.getItem("token"),
+  }
+}
   render() {
     return (
       <body>
@@ -13,9 +19,13 @@ class Home extends Component {
           
           </div>
           <div className="container">
+            {this.state.token? <Button href=" todolist" className="register" size="lg">
+              Start Now
+            </Button>:
             <Button href="Signup" className="register" size="lg">
               Start Now
-            </Button>{" "}
+            </Button> }
+           
         </div>
       </body>
     );

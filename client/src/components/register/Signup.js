@@ -51,7 +51,7 @@ class Signup extends Component {
     let obj = {
       name: this.state.name,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
       // image: this.state.image
     };
     axios({
