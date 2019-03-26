@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
 import "./Signin.css";
 import axios from "axios";
-import {Button} from "reactstrap";
+import {Alert} from "reactstrap";
 
 class Signup extends Component {
   constructor(props) {
@@ -15,7 +16,36 @@ class Signup extends Component {
       image:""
     };
   }
+  // getFiles(files) {
+  //   this.setState({ files: files[0].base64 });
+  //   var baseStr = files[0].base64.substr(22);
 
+  //   $.ajax({
+  //     url: "https://api.imgur.com/3/image",
+  //     type: "POST",
+  //     data: JSON.stringify(baseStr),
+  //     headers: {
+  //       Authorization: "Client-ID 0d9a88ca2265606"
+  //     },
+  //     contentType: "undefined",
+  //     success: data => {
+  //       this.setState({
+  //         isNotUpload: false,
+  //         image: data.data.link
+  //       });
+  //     },
+  //     error: function (error) {
+  //       console.error("image not uploaded", error);
+  //     }
+  //   });
+  // }
+  routeChange = () => {
+    if(this.state.isSignedIn) {
+        let path = `/`;
+  this.props.history.push(path);
+    }
+  
+}
 
   handleChange = e => {
     this.setState({
@@ -52,7 +82,7 @@ class Signup extends Component {
   };
   render() {
     return (
-      <div className="container">
+      <div class="container">
         <form action="" onSubmit={this.handleSubmit}>
           <h1>Sign Up</h1>
           <input
@@ -75,13 +105,18 @@ class Signup extends Component {
                   className="validate"
                   value={this.state.password}
                   onChange={e => this.setState({ password: e.target.value })} placeholder="Password" />
-        
-            <Button color="primary" href="Signup" type="Submit" className="signupbtn">Submit</Button>{' '}
+                  {/* <FileBase64 multiple={true} onDone={this.getFiles.bind(this)} /> */}
+          {/* <div className="input-field"></div>  */}
+          <button type="Submit" onClick={this.routeChange}>Submit</button>
           <br />
           <span>Already User:</span>
           <br />
           <a href="/Signin">Sign In</a>
         </form>
+        {this.state.isSignedUp? 
+        <Alert color="success">
+        Your acoun created successfully — <a href="/signin">Go to my profile</a> 
+      </Alert>:null}
       </div>
     );
   }

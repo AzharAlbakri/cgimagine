@@ -63,5 +63,57 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+//////////////////////////////////////////////////////////////
+//                            SignUp                         //
+//////////////////////////////////////////////////////////////
+app.post("/signUp", function(req, res, next) {
+  console.log("body for sign up", req.body);
+
+  var userExist = `select * from users where email =\"${req.body.email}\"`;
+  console.log(userExist, "usreee");
+  dbConnection.Schema.query(userExist, function(err, result) {
+    if (result.length == 0) {
+      console.log(result, "result/*/***/*/**/*/*/*/*/*/*/*");
+      bcrypt.hash(req.body.password, 10, (err, hash) => {
+        if (err) {
+          return res.status(500).json({
+            error: err
+          });
+        } else {
+          var name = req.body.name;
+          var email = req.body.email;
+          // var image = req.body.image;
+          var password = hash;
+
+          // NOTE: Query to insert the user information
+          var query = `insert into users (name, email, password)
+         values
+         (\"${name}\",\"${email}\",\"${password}\")`;
+
+          // NOTE: insert post information to the database
+          dbConnection.Schema.query(query, function(err, result) {
+            if (result) {
+              var token = jwt.sign({ email: email, id: result.id }, secret, {
+                expiresIn: "48h"
+              });
+              res.json({
+                email: email,
+                name: name,
+                id: result.id,
+                message: "User Authenticate",
+                token: token
+              });
+            } else {
+              res.send(err);
+            }
+          });
+        }
+      });
+    } else {
+      console.log("User already exists!");
+      res.json("User already exists!");
+    }
+  });
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
