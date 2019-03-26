@@ -17,10 +17,14 @@
       color: aliceblue;
 
   }
+  
 
-   .signupbtn{
-    background-color: rgb(132, 0, 255)!important;
+  button {
+    background-color:blueviolet;
     color: aliceblue;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   span{

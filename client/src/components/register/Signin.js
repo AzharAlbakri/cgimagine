@@ -51,7 +51,7 @@ class Signin extends Component {
 
   routeChange = () => {
     if(this.state.isSignedIn) {
-        let path = `/`;
+        let path = `/UserInfo`;
   this.props.history.push(path);
     }
   

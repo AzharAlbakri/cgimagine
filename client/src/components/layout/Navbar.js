@@ -44,15 +44,15 @@ import {
                 <NavLink href="https://github.com/reactstrap/reactstrap">Sign in</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle nav caret >
                   My Profile
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
+                  <DropdownItem href="/UserInfo/">
+                    My Profile
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                    Archived ToDos
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
