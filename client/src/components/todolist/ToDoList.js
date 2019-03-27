@@ -55,6 +55,7 @@ class ToDoList extends Component {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+    
   }
 
   handleChange = e => {
@@ -85,6 +86,7 @@ class ToDoList extends Component {
       isAdd: true
     });
     e.preventDefault();
+    window.location.reload()
   };
 
   render() {
