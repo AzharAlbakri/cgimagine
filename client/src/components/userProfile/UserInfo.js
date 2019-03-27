@@ -32,7 +32,7 @@ class UserInfo extends Component {
   render() {
     return (
       <Container>
-        <div className="container">
+        <div >
           <Card className="mapCardN">
             <div>
               <br />

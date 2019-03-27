@@ -270,6 +270,25 @@ app.post("/unvisibledToDos", function(req, res) {
 //////////////////////////////////////////////////////////////
 //                        update todo status                //
 //////////////////////////////////////////////////////////////
+//Uncompleted todo
+app.put("/unCompletedTodo", function(req, res) {
+  if (req.body.id) {
+    var id = req.body.id;
+    var status = "uncompleted";
+    var query = `UPDATE todos SET status = "uncompleted" WHERE id = ${id}`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send('uncompleted successfully');
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
+
 //completed todo
 app.put("/completeTodo", function(req, res) {
   if (req.body.id) {

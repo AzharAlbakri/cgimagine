@@ -13,23 +13,23 @@
    color: aliceblue;
 }
 
-.container .register{
+/* .container .register{
    
    background-color: rgb(132, 0, 255);
    color: aliceblue;
    
-}
+} */
 
+.container a .btn-block {
+   
+    background-color: rgb(132, 0, 255);
+    color: aliceblue;
+    
+ }
 /* Button {
     align: center;
     padding-left: 200px;
 } */
 
 
-/* .container .btn{
-   
-    background-color: rgb(132, 0, 255);
-    color: aliceblue;
-    padding: 100px
-    
- } */
+

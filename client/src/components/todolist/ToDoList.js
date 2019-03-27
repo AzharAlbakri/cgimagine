@@ -170,7 +170,7 @@ class ToDoList extends Component {
   render() {
     return (
       <Container>
-        <div className="container">
+        <div >
           <div className="input">
             <form action="" onSubmit={this.handleAdd}>
               <InputGroup>
@@ -295,7 +295,7 @@ class ToDoList extends Component {
                 ) : (
                   <Col sm="12">
                     <h1 style={{ color: "grey", padding: "20px" }}>
-                      there are no Removed todos
+                      there are no removed todos
                     </h1>
                   </Col>
                 )}
@@ -314,7 +314,7 @@ class ToDoList extends Component {
                 ) : (
                   <Col sm="12">
                     <h1 style={{ color: "grey", padding: "20px" }}>
-                      there are no Unvisible todos 
+                      there are no unvisible todos 
                     </h1>
                   </Col>
                 )}

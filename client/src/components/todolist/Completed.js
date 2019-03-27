@@ -3,6 +3,7 @@ import $ from "jquery";
 
 import {
   Card,
+  CardLink,
   CardImg,
   CardBlock,
   CardText,
@@ -26,115 +27,78 @@ class Todo extends Component {
     super(props);
     this.state = {};
   }
-  handleRemove = e => {
+  handleDelete = e => {
     console.log("remove btn fires");
-    console.log("removeBTN",e.target.id)
+    console.log("removeBTN", e.target.id);
     const target = e.target;
     const item = JSON.parse(target.id);
     $.ajax({
-      type: "PUT",
-      url: "http://localhost:5000/removeTodo",
+      type: "DELETE",
+      url: "http://localhost:5000/deleteTodo",
       dataType: "json",
-      data: {id:item},
+      data: { id: item },
       success: function(response) {
-          console.log("successfully deleted");
+        console.log("successfully deleted");
       },
-      error: function () {
-          console.log("error");
+      error: function() {
+        console.log("error");
       }
-  });
-  window.location.reload()
-
+    });
+    window.location.reload();
   };
 
-  handleUnvisibil = e => {
+  handleUncompleted = e => {
     console.log("unvisible btn fires");
-    console.log("unvisibleBTN",e.target.id)
+    console.log("unvisibleBTN", e.target.id);
     const target = e.target;
     const item = JSON.parse(target.id);
     $.ajax({
       type: "PUT",
-      url: "http://localhost:5000/unvisibleTodo",
+      url: "http://localhost:5000/unCompletedTodo",
       dataType: "json",
-      data: {id:item},
+      data: { id: item },
       success: function(response) {
-          console.log("successfully unvisibled");
+        console.log("successfully uncompleted");
       },
-      error: function () {
-          console.log("error");
+      error: function() {
+        console.log("error");
       }
-  });
-  window.location.reload()
-  }
-  
+    });
+    window.location.reload();
+  };
 
-  handleComplete = e => {
-    console.log("complete btn fires");
-    console.log("completeBTN",e.target.id)
-    const target = e.target;
-    const item = JSON.parse(target.id);
-    $.ajax({
-      type: "PUT",
-      url: "http://localhost:5000/completeTodo",
-      dataType: "json",
-      data: {id:item},
-      success: function(response) {
-          console.log("successfully completed");
-      },
-      error: function () {
-          console.log("error");
-      }
-  });
-  window.location.reload()
-  }
 
   render() {
     return (
       <Container>
-        <div className="card">
-          {/* <Card className="mapCardN"> */}
-          <CardBody>
-            <CardTitle>
-              {" "}
-              <strong>{this.props.todo.title}</strong>{" "}
-            </CardTitle>
-            <CardSubtitle>{this.props.todo.description}</CardSubtitle>
-          </CardBody>
-          <CardFooter>
-            <Row>
-              <Col xs="8" sm="8">
-                <br />
-                <span>{this.props.todo.date}</span>
-              </Col>
-              <Col xs="4" sm="4">
-                <Row>
-                  <Col xs="4" sm="4">
-                    <br />
-                    <button href="#" id={this.props.todo.id} onClick={this.handleRemove}>Delete</button>
-                    {/* <a
-                      href=""
-                      id={this.props.todo.id} onClick={this.handleRemove}
-                    >
-                      <Icon small className="icon">
-                        delete
-                      </Icon>{" "}
-                    </a> */}
-                  </Col>
-                  <Col xs="4" sm="4">
-                    {" "}
-                    <br />
-                   
-                    <button href="#" id={this.props.todo.id} onClick={this.handleComplete}>UnCompleted</button>
-
-                    {/* <a href="">
-                      <Icon small>check_circle</Icon>
-                    </a> */}
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </CardFooter>
-          {/* </Card> */}
+        <div>
+          <Card>
+            <CardBody>
+              <CardTitle>
+                <strong>{this.props.todo.title}</strong>
+              </CardTitle>
+              <CardSubtitle>{this.props.todo.description}</CardSubtitle>
+              <br />
+              <CardSubtitle>{this.props.todo.date}</CardSubtitle>
+            </CardBody>
+            <CardBody>
+              <hr />
+              <CardLink
+                href="#"
+                id={this.props.todo.id}
+                onClick={this.handleDelete}
+              >
+                Delete
+              </CardLink>
+              <CardLink
+                href="#"
+                id={this.props.todo.id}
+                onClick={this.handleUncompleted}
+              >
+                UnCompleted
+              </CardLink>
+            </CardBody>
+          </Card>
         </div>
       </Container>
     );
