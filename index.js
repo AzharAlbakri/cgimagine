@@ -208,7 +208,7 @@ app.post("/uncompletedToDos", function(req, res) {
 });
 
 //get completed todos
-app.get("/completedToDos", function(req, res) {
+app.post("/completedToDos", function(req, res) {
   if (req.body.owner_id) {
     var owner_id = req.body.owner_id;
     var status = "completed";
@@ -228,7 +228,7 @@ app.get("/completedToDos", function(req, res) {
 });
 
 //get removed todos
-app.get("/removedToDos", function(req, res) {
+app.post("/removedToDos", function(req, res) {
   if (req.body.owner_id) {
     var owner_id = req.body.owner_id;
     var status = "removed";
@@ -248,7 +248,7 @@ app.get("/removedToDos", function(req, res) {
 });
 
 //get unvisible todos
-app.get("/unvisibledToDos", function(req, res) {
+app.post("/unvisibledToDos", function(req, res) {
   if (req.body.owner_id) {
     var owner_id = req.body.owner_id;
     var status = "unvisible";

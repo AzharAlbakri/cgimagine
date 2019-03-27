@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import $ from "jquery";
 import Todo from "./Todo.js";
+import Removed from "./Removed.js";
+import Completed from "./Completed";
+import Unvisible from "./Unvisible";
+
+import classnames from "classnames";
 import {
   Card,
   CardImg,
@@ -17,7 +22,12 @@ import {
   Col,
   InputGroup,
   Input,
-  InputGroupAddon
+  InputGroupAddon,
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink
 } from "reactstrap";
 import { Icon } from "react-materialize";
 import "./ToDoList.css";
@@ -30,14 +40,18 @@ class ToDoList extends Component {
       description: "",
       isAdd: false,
       owner_id: localStorage.getItem("id"),
-      todos: []
+      todos: [],
+      comTodos: [],
+      RemTodos:[],
+      unvTodos:[],
+      activeTab: "1"
     };
   }
   componentDidMount() {
     console.log("here did mount todolist");
 
-    var owner_id = { owner_id: 3 };
-
+    var owner_id = { owner_id: this.state.owner_id };
+    //Uncompleted Todos
     $.ajax({
       url: "http://localhost:5000/uncompletedToDos",
       type: "POST",
@@ -55,8 +69,75 @@ class ToDoList extends Component {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+
+    //Completed Todos
+    $.ajax({
+      url: "http://localhost:5000/completedToDos",
+      type: "POST",
+      data: JSON.stringify(owner_id),
+      contentType: "application/json",
+      success: function(data) {
+        this.setState({
+          comTodos: data
+        });
+        console.log("comTodos", this.state.comTodos);
+
+        return data;
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+
+       //Removed Todos
+       $.ajax({
+        url: "http://localhost:5000/removedToDos",
+        type: "POST",
+        data: JSON.stringify(owner_id),
+        contentType: "application/json",
+        success: function(data) {
+          this.setState({
+            RemTodos: data
+          });
+          console.log("RemTodos", this.state.RemTodos);
+  
+          return data;
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+
+         //Unvisible Todos
+         $.ajax({
+          url: "http://localhost:5000/unvisibledToDos",
+          type: "POST",
+          data: JSON.stringify(owner_id),
+          contentType: "application/json",
+          success: function(data) {
+            this.setState({
+              unvTodos: data
+            });
+            console.log("unvTodos", this.state.unvTodos);
     
-  }
+            return data;
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+          }.bind(this)
+        });
+    }
+  
+
+  
+
+  toggle = tab => {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
+  };
 
   handleChange = e => {
     this.setState({
@@ -86,7 +167,7 @@ class ToDoList extends Component {
       isAdd: true
     });
     e.preventDefault();
-    window.location.reload()
+    window.location.reload();
   };
 
   render() {
@@ -125,9 +206,90 @@ class ToDoList extends Component {
               </InputGroup>
             </form>
           </div>
-          {this.state.todos.map(function(todo, index) {
-            return <Todo todo={todo} key={index} />;
-          })}
+        </div>
+
+        <div>
+          <Nav tabs>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: this.state.activeTab === "1" })}
+                onClick={() => {
+                  this.toggle("1");
+                }}
+              >
+                To Do
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: this.state.activeTab === "2" })}
+                onClick={() => {
+                  this.toggle("2");
+                }}
+              >
+                Completed Todos
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: this.state.activeTab === "3" })}
+                onClick={() => {
+                  this.toggle("3");
+                }}
+              >
+                Removed Todos
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: this.state.activeTab === "4" })}
+                onClick={() => {
+                  this.toggle("4");
+                }}
+              >
+                Unvisible Todos
+              </NavLink>
+            </NavItem>
+          </Nav>
+          
+          <TabContent activeTab={this.state.activeTab}>
+            <TabPane tabId="1">
+              <Row>
+                <Col sm="12">
+                  {this.state.todos.map(function(todo, index) {
+                    return <Todo todo={todo} key={index} />;
+                  })}
+                </Col>
+              </Row>
+            </TabPane>
+            <TabPane tabId="2">
+              <Row>
+                <Col sm="12">
+                  {this.state.comTodos.map(function(todo, index) {
+                    return <Completed todo={todo} key={index} />;
+                  })}
+                </Col>
+              </Row>
+            </TabPane>
+            <TabPane tabId="3">
+              <Row>
+                <Col sm="12">
+                  {this.state.RemTodos.map(function(todo, index) {
+                    return <Removed todo={todo} key={index} />;
+                  })}
+                </Col>
+              </Row>
+            </TabPane>
+            <TabPane tabId="4">
+              <Row>
+                <Col sm="12">
+                  {this.state.unvTodos.map(function(todo, index) {
+                    return <Unvisible todo={todo} key={index} />;
+                  })}
+                </Col>
+              </Row>
+            </TabPane>
+          </TabContent>
         </div>
       </Container>
     );

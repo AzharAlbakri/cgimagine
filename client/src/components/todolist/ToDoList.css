@@ -60,3 +60,9 @@ span {
     float: left;
     padding: 0px
 } */
+
+.tab-content{
+  background-color: rgb(255, 255, 255);
+  /* height: 100%; */
+  
+}
