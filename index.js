@@ -207,8 +207,8 @@ app.post("/uncompletedToDos", function(req, res) {
   }
 });
 
-//get compleated todos
-app.get("/compleatedToDos", function(req, res) {
+//get completed todos
+app.get("/completedToDos", function(req, res) {
   if (req.body.owner_id) {
     var owner_id = req.body.owner_id;
     var status = "completed";
@@ -247,7 +247,7 @@ app.get("/removedToDos", function(req, res) {
   }
 });
 
-//get removed unvisible
+//get unvisible todos
 app.get("/unvisibledToDos", function(req, res) {
   if (req.body.owner_id) {
     var owner_id = req.body.owner_id;
@@ -266,5 +266,72 @@ app.get("/unvisibledToDos", function(req, res) {
     res.json("wrong in data!");
   }
 });
+
+//////////////////////////////////////////////////////////////
+//                        update todo status                //
+//////////////////////////////////////////////////////////////
+//completed todo
+app.put("/completeTodo", function(req, res) {
+  if (req.body.id) {
+    var id = req.body.id;
+    var status = "completed";
+    var query = `UPDATE todos SET status = "completed" WHERE id = ${id}`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send('completed successfully');
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
+
+
+//remove todo
+app.put("/removeTodo", function(req, res) {
+  if (req.body.id) {
+    var id = req.body.id;
+    var status = "removed";
+
+    var query = `UPDATE todos SET status = "removed" WHERE id = ${id}`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send('removed successfully');
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
+
+//unvisible todo
+app.put("/unvisibleTodo", function(req, res) {
+  if (req.body.id) {
+    var id = req.body.id;
+    var status = "unvisible";
+
+    var query = `UPDATE todos SET status = "unvisible" WHERE id = ${id}`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send('unvisibled successfully');
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
+
+// UPDATE table_name
+// SET column1 = value1, column2 = value2, ...
+// WHERE condition;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
