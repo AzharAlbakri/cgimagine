@@ -4,22 +4,11 @@ import $ from "jquery";
 import {
   CardLink,
   Card,
-  CardImg,
-  CardBlock,
-  CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button,
-  CardFooter,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Input,
-  InputGroupAddon
+  Container
 } from "reactstrap";
-import { Icon } from "react-materialize";
 import "./ToDoList.css";
 
 class Todo extends Component {
@@ -88,7 +77,6 @@ class Todo extends Component {
   };
 
   render() {
-    
     return (
       <Container>
         <div>

@@ -4,22 +4,11 @@ import $ from "jquery";
 import {
   CardLink,
   Card,
-  CardImg,
-  CardBlock,
-  CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button,
-  CardFooter,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Input,
-  InputGroupAddon
+  Container
 } from "reactstrap";
-import { Icon } from "react-materialize";
 import "./ToDoList.css";
 
 class Todo extends Component {
@@ -28,25 +17,25 @@ class Todo extends Component {
     this.state = {};
   }
 
-handleDelete = e => {
-  console.log("remove btn fires");
-  console.log("removeBTN", e.target.id);
-  const target = e.target;
-  const item = JSON.parse(target.id);
-  $.ajax({
-    type: "DELETE",
-    url: "http://localhost:5000/deleteTodo",
-    dataType: "json",
-    data: { id: item },
-    success: function(response) {
-      console.log("successfully deleted");
-    },
-    error: function() {
-      console.log("error");
-    }
-  });
-  window.location.reload();
-};
+  handleDelete = e => {
+    console.log("remove btn fires");
+    console.log("removeBTN", e.target.id);
+    const target = e.target;
+    const item = JSON.parse(target.id);
+    $.ajax({
+      type: "DELETE",
+      url: "http://localhost:5000/deleteTodo",
+      dataType: "json",
+      data: { id: item },
+      success: function(response) {
+        console.log("successfully deleted");
+      },
+      error: function() {
+        console.log("error");
+      }
+    });
+    window.location.reload();
+  };
 
   handleUncompleted = e => {
     console.log("unvisible btn fires");
@@ -97,7 +86,6 @@ handleDelete = e => {
               >
                 Unvisible
               </CardLink>
-             
             </CardBody>
           </Card>
         </div>

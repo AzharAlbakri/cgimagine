@@ -8,15 +8,7 @@ import Unvisible from "./Unvisible";
 
 import classnames from "classnames";
 import {
-  Card,
-  CardImg,
-  CardBlock,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
   Button,
-  CardFooter,
   Container,
   Row,
   Col,
@@ -29,7 +21,6 @@ import {
   NavItem,
   NavLink
 } from "reactstrap";
-import { Icon } from "react-materialize";
 import "./ToDoList.css";
 
 class ToDoList extends Component {
@@ -170,7 +161,7 @@ class ToDoList extends Component {
   render() {
     return (
       <Container>
-        <div >
+        <div>
           <div className="input">
             <form action="" onSubmit={this.handleAdd}>
               <InputGroup>
@@ -214,7 +205,7 @@ class ToDoList extends Component {
                   this.toggle("1");
                 }}
               >
-               <strong>To Do</strong> 
+                <strong>To Do</strong>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -224,7 +215,7 @@ class ToDoList extends Component {
                   this.toggle("2");
                 }}
               >
-                <strong>Completed Todos</strong> 
+                <strong>Completed Todos</strong>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -234,7 +225,7 @@ class ToDoList extends Component {
                   this.toggle("3");
                 }}
               >
-               <strong>Removed Todos</strong> 
+                <strong>Removed Todos</strong>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -244,7 +235,7 @@ class ToDoList extends Component {
                   this.toggle("4");
                 }}
               >
-              <strong>Unvisible Todos</strong>  
+                <strong>Unvisible Todos</strong>
               </NavLink>
             </NavItem>
           </Nav>
@@ -303,18 +294,16 @@ class ToDoList extends Component {
             </TabPane>
             <TabPane tabId="4">
               <Row>
-                
-
                 {this.state.unvTodos.length !== 0 ? (
                   <Col sm="12">
-                  {this.state.unvTodos.map(function(todo, index) {
-                    return <Unvisible todo={todo} key={index} />;
-                  })}
-                </Col>
+                    {this.state.unvTodos.map(function(todo, index) {
+                      return <Unvisible todo={todo} key={index} />;
+                    })}
+                  </Col>
                 ) : (
                   <Col sm="12">
                     <h1 style={{ color: "grey", padding: "20px" }}>
-                      there are no unvisible todos 
+                      there are no unvisible todos
                     </h1>
                   </Col>
                 )}

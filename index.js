@@ -48,7 +48,6 @@ app.get("/api/hello", (req, res) => {
 });
 
 app.post("/api/world", (req, res) => {
-  // console.log(req.body);
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`
   );
@@ -82,7 +81,6 @@ app.post("/signUp", function(req, res, next) {
         } else {
           var name = req.body.name;
           var email = req.body.email;
-          // var image = req.body.image;
           var password = hash;
 
           // NOTE: Query to insert the user information
@@ -160,7 +158,7 @@ app.post("/signIn", function(req, res) {
 //////////////////////////////////////////////////////////////
 app.post("/addTodo", function(req, res) {
   console.log("entered addTodo api");
-  
+
   if (req.body.length !== 0) {
     var title = req.body.title;
     var description = req.body.description;
@@ -278,7 +276,7 @@ app.put("/unCompletedTodo", function(req, res) {
     var query = `UPDATE todos SET status = "uncompleted" WHERE id = ${id}`;
     dbConnection.Schema.query(query, function(err, result) {
       if (result) {
-        res.send('uncompleted successfully');
+        res.send("uncompleted successfully");
       } else {
         res.send(err);
       }
@@ -297,7 +295,7 @@ app.put("/completeTodo", function(req, res) {
     var query = `UPDATE todos SET status = "completed" WHERE id = ${id}`;
     dbConnection.Schema.query(query, function(err, result) {
       if (result) {
-        res.send('completed successfully');
+        res.send("completed successfully");
       } else {
         res.send(err);
       }
@@ -308,7 +306,6 @@ app.put("/completeTodo", function(req, res) {
   }
 });
 
-
 //remove todo
 app.put("/removeTodo", function(req, res) {
   if (req.body.id) {
@@ -318,7 +315,7 @@ app.put("/removeTodo", function(req, res) {
     var query = `UPDATE todos SET status = "removed" WHERE id = ${id}`;
     dbConnection.Schema.query(query, function(err, result) {
       if (result) {
-        res.send('removed successfully');
+        res.send("removed successfully");
       } else {
         res.send(err);
       }
@@ -338,7 +335,7 @@ app.put("/unvisibleTodo", function(req, res) {
     var query = `UPDATE todos SET status = "unvisible" WHERE id = ${id}`;
     dbConnection.Schema.query(query, function(err, result) {
       if (result) {
-        res.send('unvisibled successfully');
+        res.send("unvisibled successfully");
       } else {
         res.send(err);
       }
@@ -348,8 +345,6 @@ app.put("/unvisibleTodo", function(req, res) {
     res.json("wrong in data!");
   }
 });
-
-
 
 //////////////////////////////////////////////////////////////
 //                   delet todo completly fron DB           //
@@ -362,7 +357,7 @@ app.delete("/deleteTodo", function(req, res) {
     var query = `DELETE FROM todos WHERE id = ${id}`;
     dbConnection.Schema.query(query, function(err, result) {
       if (result) {
-        res.send('deleted successfully');
+        res.send("deleted successfully");
       } else {
         res.send(err);
       }
@@ -372,7 +367,5 @@ app.delete("/deleteTodo", function(req, res) {
     res.json("wrong in data!");
   }
 });
-
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

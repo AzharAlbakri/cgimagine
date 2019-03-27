@@ -1,7 +1,3 @@
-.container .mapCardN {
-  /* background-color: #ffffff; */
-}
-
 .container .input {
   background-color: #99939341;
   margin: 20px;
@@ -20,14 +16,11 @@
   background-color: blueviolet;
   padding: 10px 30px 30px 30px;
   margin: 20px 20px 20px 0px;
-  /* margin:20px */
 }
 
 .card .card-footer {
   padding: 0px;
 }
-
-/*  */
 
 span {
   color: #333333;
@@ -36,48 +29,28 @@ span {
   text-align: left;
 }
 
-/* .card .card-footer .Icon {
-  padding: 0px;
-  float: right;
-  text-align: left;
-  padding-left: 10px;
-} */
-.material-icons{
-    color: #333333;
+.material-icons {
+  color: #333333;
   padding-left: 10px;
   float: left;
   text-align: left;
- }
- button :hover{
-   color: blueviolet;
 }
-
-/* .card .card-title {
-    float: left;
-}
-
-.card .card-subtitle {
-    float: left;
-    padding: 0px
-} */
-
-.card-title >strong{
+button :hover {
   color: blueviolet;
-
 }
 
-.tab-content{
+.card-title > strong {
+  color: blueviolet;
+}
+
+.tab-content {
   background-color: rgb(255, 255, 255);
-  /* height: 100%; */
-  
 }
 
- .tab-navs .nav-link{
-  background-color:#dadada;
-
-}
-
-.nav{
+.tab-navs .nav-link {
   background-color: #dadada;
+}
 
+.nav {
+  background-color: #dadada;
 }

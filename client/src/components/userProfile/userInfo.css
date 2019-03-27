@@ -1,14 +1,9 @@
-.mapCardN .btn{
-margin: 5px;
-background-color: blueviolet;
-color: aliceblue;
-
+.mapCardN .btn {
+  margin: 5px;
+  background-color: blueviolet;
+  color: aliceblue;
 }
 
-/* .container .mapCardN{
-    background-color: #1b1b1b00;
-} */
-
-.mapCardN .text{
-    color: aliceblue
+.mapCardN .text {
+  color: aliceblue;
 }

@@ -1,35 +1,10 @@
-/* body{ 
-    background-image: url(./bgfin.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    margin: 0;
-    height: 100%;
-} */
-
-
-.title{
-    padding-top:300px;
-   text-align: center;
-   color: aliceblue;
+.title {
+  padding-top: 300px;
+  text-align: center;
+  color: aliceblue;
 }
 
-/* .container .register{
-   
-   background-color: rgb(132, 0, 255);
-   color: aliceblue;
-   
-} */
-
 .container a .btn-block {
-   
-    background-color: rgb(132, 0, 255);
-    color: aliceblue;
-    
- }
-/* Button {
-    align: center;
-    padding-left: 200px;
-} */
-
-
-
+  background-color: rgb(132, 0, 255);
+  color: aliceblue;
+}

@@ -1,21 +1,14 @@
 import React, { Component } from "react";
 import {
   Card,
-  CardImg,
-  CardBlock,
-  CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
   Button,
-  CardFooter,
-  Container,
-  Row,
-  Col
+  Container
 } from "reactstrap";
-import { Icon } from "react-materialize";
 import img from "./img.png";
-import "./userInfo.css"
+import "./userInfo.css";
 
 class UserInfo extends Component {
   constructor(props) {
@@ -32,7 +25,7 @@ class UserInfo extends Component {
   render() {
     return (
       <Container>
-        <div >
+        <div>
           <Card className="mapCardN">
             <div>
               <br />
@@ -42,8 +35,10 @@ class UserInfo extends Component {
               <CardTitle className="text">
                 <strong>{this.state.name}</strong>
               </CardTitle>
-              <CardSubtitle className="text">{this.state.email}</CardSubtitle>
-              <Button className="btn" href="/todolist">My to do list</Button>
+              <CardSubtitle className="text" style={{color:"#333333"}}>{this.state.email}</CardSubtitle>
+              <Button className="btn" href="/todolist">
+                My to do list
+              </Button>
               <Button>My Archive</Button>
             </CardBody>
           </Card>

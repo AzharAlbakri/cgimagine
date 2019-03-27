@@ -28,7 +28,6 @@ class Signup extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password
-      // image: this.state.image
     };
     axios({
       method: "post",
@@ -36,7 +35,6 @@ class Signup extends Component {
       data: obj
     })
       .then(response => {
-        console.log("response", response);
         localStorage.setItem("id", response.data.id);
         localStorage.setItem("name", response.data.name);
         localStorage.setItem("email", response.data.email);

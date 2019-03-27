@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button } from "reactstrap";
 
 import "./Home.css";
-import BG from "./bg.jpg";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +25,7 @@ class Home extends Component {
                   size="lg"
                   block
                   style={{
-                    marginBottom:"230px",
+                    marginBottom: "230px",
                     padding: "20px 50px 50px 20px",
                     backgroundColor: "rgb(132, 0, 255)",
                     color: "aliceblue"
@@ -41,7 +40,7 @@ class Home extends Component {
                   size="lg"
                   block
                   style={{
-                    marginBottom:"230px",
+                    marginBottom: "230px",
                     padding: "20px 50px 50px 20px",
                     backgroundColor: "rgb(132, 0, 255)",
                     color: "aliceblue"
