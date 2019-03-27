@@ -48,7 +48,7 @@ span {
   float: left;
   text-align: left;
  }
- a :hover{
+ button :hover{
    color: blueviolet;
 }
 
@@ -61,8 +61,23 @@ span {
     padding: 0px
 } */
 
+.card-title >strong{
+  color: blueviolet;
+
+}
+
 .tab-content{
   background-color: rgb(255, 255, 255);
   /* height: 100%; */
   
+}
+
+ .tab-navs .nav-link{
+  background-color:#949494;
+
+}
+
+.nav{
+  background-color: rgba(255, 255, 255, 0.137);
+
 }

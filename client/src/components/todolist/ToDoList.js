@@ -42,8 +42,8 @@ class ToDoList extends Component {
       owner_id: localStorage.getItem("id"),
       todos: [],
       comTodos: [],
-      RemTodos:[],
-      unvTodos:[],
+      RemTodos: [],
+      unvTodos: [],
       activeTab: "1"
     };
   }
@@ -89,47 +89,44 @@ class ToDoList extends Component {
       }.bind(this)
     });
 
-       //Removed Todos
-       $.ajax({
-        url: "http://localhost:5000/removedToDos",
-        type: "POST",
-        data: JSON.stringify(owner_id),
-        contentType: "application/json",
-        success: function(data) {
-          this.setState({
-            RemTodos: data
-          });
-          console.log("RemTodos", this.state.RemTodos);
-  
-          return data;
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
-
-         //Unvisible Todos
-         $.ajax({
-          url: "http://localhost:5000/unvisibledToDos",
-          type: "POST",
-          data: JSON.stringify(owner_id),
-          contentType: "application/json",
-          success: function(data) {
-            this.setState({
-              unvTodos: data
-            });
-            console.log("unvTodos", this.state.unvTodos);
-    
-            return data;
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.props.url, status, err.toString());
-          }.bind(this)
+    //Removed Todos
+    $.ajax({
+      url: "http://localhost:5000/removedToDos",
+      type: "POST",
+      data: JSON.stringify(owner_id),
+      contentType: "application/json",
+      success: function(data) {
+        this.setState({
+          RemTodos: data
         });
-    }
-  
+        console.log("RemTodos", this.state.RemTodos);
 
-  
+        return data;
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+
+    //Unvisible Todos
+    $.ajax({
+      url: "http://localhost:5000/unvisibledToDos",
+      type: "POST",
+      data: JSON.stringify(owner_id),
+      contentType: "application/json",
+      success: function(data) {
+        this.setState({
+          unvTodos: data
+        });
+        console.log("unvTodos", this.state.unvTodos);
+
+        return data;
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  }
 
   toggle = tab => {
     if (this.state.activeTab !== tab) {
@@ -209,7 +206,7 @@ class ToDoList extends Component {
         </div>
 
         <div>
-          <Nav tabs>
+          <Nav className="tab-navs" tabs>
             <NavItem>
               <NavLink
                 className={classnames({ active: this.state.activeTab === "1" })}
@@ -217,7 +214,7 @@ class ToDoList extends Component {
                   this.toggle("1");
                 }}
               >
-                To Do
+               <strong>To Do</strong> 
               </NavLink>
             </NavItem>
             <NavItem>
@@ -227,7 +224,7 @@ class ToDoList extends Component {
                   this.toggle("2");
                 }}
               >
-                Completed Todos
+                <strong>Completed Todos</strong> 
               </NavLink>
             </NavItem>
             <NavItem>
@@ -237,7 +234,7 @@ class ToDoList extends Component {
                   this.toggle("3");
                 }}
               >
-                Removed Todos
+               <strong>Removed Todos</strong> 
               </NavLink>
             </NavItem>
             <NavItem>
@@ -247,46 +244,80 @@ class ToDoList extends Component {
                   this.toggle("4");
                 }}
               >
-                Unvisible Todos
+              <strong>Unvisible Todos</strong>  
               </NavLink>
             </NavItem>
           </Nav>
-          
+
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="1">
               <Row>
-                <Col sm="12">
-                  {this.state.todos.map(function(todo, index) {
-                    return <Todo todo={todo} key={index} />;
-                  })}
-                </Col>
+                {this.state.todos.length !== 0 ? (
+                  <Col sm="12">
+                    {this.state.todos.map(function(todo, index) {
+                      return <Todo todo={todo} key={index} />;
+                    })}
+                  </Col>
+                ) : (
+                  <Col sm="12">
+                    <h1 style={{ color: "grey", padding: "20px" }}>
+                      there are no todos
+                    </h1>
+                  </Col>
+                )}
               </Row>
             </TabPane>
             <TabPane tabId="2">
               <Row>
-                <Col sm="12">
-                  {this.state.comTodos.map(function(todo, index) {
-                    return <Completed todo={todo} key={index} />;
-                  })}
-                </Col>
+                {this.state.comTodos.length !== 0 ? (
+                  <Col sm="12">
+                    {this.state.comTodos.map(function(todo, index) {
+                      return <Completed todo={todo} key={index} />;
+                    })}
+                  </Col>
+                ) : (
+                  <Col sm="12">
+                    <h1 style={{ color: "grey", padding: "20px" }}>
+                      there are no completed todos
+                    </h1>
+                  </Col>
+                )}
               </Row>
             </TabPane>
             <TabPane tabId="3">
               <Row>
-                <Col sm="12">
-                  {this.state.RemTodos.map(function(todo, index) {
-                    return <Removed todo={todo} key={index} />;
-                  })}
-                </Col>
+                {this.state.RemTodos.length !== 0 ? (
+                  <Col sm="12">
+                    {this.state.RemTodos.map(function(todo, index) {
+                      return <Removed todo={todo} key={index} />;
+                    })}
+                  </Col>
+                ) : (
+                  <Col sm="12">
+                    <h1 style={{ color: "grey", padding: "20px" }}>
+                      there are no Removed todos
+                    </h1>
+                  </Col>
+                )}
               </Row>
             </TabPane>
             <TabPane tabId="4">
               <Row>
-                <Col sm="12">
+                
+
+                {this.state.unvTodos.length !== 0 ? (
+                  <Col sm="12">
                   {this.state.unvTodos.map(function(todo, index) {
                     return <Unvisible todo={todo} key={index} />;
                   })}
                 </Col>
+                ) : (
+                  <Col sm="12">
+                    <h1 style={{ color: "grey", padding: "20px" }}>
+                      there are no Unvisible todos 
+                    </h1>
+                  </Col>
+                )}
               </Row>
             </TabPane>
           </TabContent>

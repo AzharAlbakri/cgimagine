@@ -49,9 +49,14 @@ import {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/todolist/">My To Do List</NavLink>
-              </NavItem>
+            {this.state.name? <NavItem>
+              
+              <NavLink href="/todolist/">My To Do List</NavLink>
+            </NavItem> :  <NavItem>
+              
+              <NavLink href="/Signin/">My To Do List</NavLink>
+            </NavItem>}
+             
              
               {this.state.name?
               <UncontrolledDropdown nav inNavbar>

@@ -79,7 +79,7 @@ class Todo extends Component {
       dataType: "json",
       data: {id:item},
       success: function(response) {
-          console.log("successfully completed");
+          console.log("successfully complete");
       },
       error: function () {
           console.log("error");
