@@ -330,8 +330,30 @@ app.put("/unvisibleTodo", function(req, res) {
   }
 });
 
-// UPDATE table_name
-// SET column1 = value1, column2 = value2, ...
-// WHERE condition;
+
+
+//////////////////////////////////////////////////////////////
+//                   delet todo completly fron DB           //
+//////////////////////////////////////////////////////////////
+
+app.delete("/deleteTodo", function(req, res) {
+  if (req.body.id) {
+    var id = req.body.id;
+
+    var query = `DELETE FROM todos WHERE id = ${id}`;
+    dbConnection.Schema.query(query, function(err, result) {
+      if (result) {
+        res.send('deleted successfully');
+      } else {
+        res.send(err);
+      }
+    });
+  } else {
+    console.log("wrong in data");
+    res.json("wrong in data!");
+  }
+});
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
