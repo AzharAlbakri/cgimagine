@@ -23,9 +23,6 @@ class App extends Component {
             <Route exact path="/Signin" component={Signin} />
             <Route exact path="/UserInfo" component={UserInfo} />
             <Route exact path="/todolist" component={ToDoList} />
-
-            
-
           </Switch>
         </div>
       </BrowserRouter>

@@ -21,6 +21,7 @@ class UserInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: localStorage.getItem("id"),
       name: localStorage.getItem("name"),
       email: localStorage.getItem("email")
     };
@@ -44,7 +45,6 @@ class UserInfo extends Component {
               <CardSubtitle className="text">{this.state.email}</CardSubtitle>
               <Button className="btn" href="/todolist">My to do list</Button>
               <Button>My Archive</Button>
-
             </CardBody>
           </Card>
         </div>

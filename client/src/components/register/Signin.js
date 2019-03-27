@@ -34,6 +34,7 @@ class Signin extends Component {
     })
       .then(response => {
         console.log('response',response);
+        localStorage.setItem("id",response.data.id)
         localStorage.setItem("name",response.data.name)
         localStorage.setItem("email",response.data.email)
         localStorage.setItem("token",response.data.token)

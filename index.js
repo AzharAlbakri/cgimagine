@@ -99,7 +99,7 @@ app.post("/signUp", function(req, res, next) {
               res.json({
                 email: email,
                 name: name,
-                id: result.id,
+                id: result[0].id,
                 message: "User Authenticate",
                 token: token
               });
@@ -141,6 +141,7 @@ app.post("/signIn", function(req, res) {
           res.json({
             email: email,
             name: result[0].name,
+            id: result[0].id,
             message: "User Authenticate",
             token: token
           });
@@ -158,6 +159,8 @@ app.post("/signIn", function(req, res) {
 //                        add todo                         //
 //////////////////////////////////////////////////////////////
 app.post("/addTodo", function(req, res) {
+  console.log("entered addTodo api");
+  
   if (req.body.length !== 0) {
     var title = req.body.title;
     var description = req.body.description;
@@ -184,8 +187,8 @@ values
 //                        get todo                         //
 //////////////////////////////////////////////////////////////
 
-//get uncompleated todos
-app.get("/toDos", function(req, res) {
+//get uncompletedToDos todos
+app.post("/uncompletedToDos", function(req, res) {
   if (req.body.owner_id) {
     var owner_id = req.body.owner_id;
     var status = "uncompleted";
@@ -205,7 +208,7 @@ app.get("/toDos", function(req, res) {
 });
 
 //get compleated todos
-app.get("/toDos", function(req, res) {
+app.get("/compleatedToDos", function(req, res) {
   if (req.body.owner_id) {
     var owner_id = req.body.owner_id;
     var status = "completed";
@@ -225,7 +228,7 @@ app.get("/toDos", function(req, res) {
 });
 
 //get removed todos
-app.get("/toDos", function(req, res) {
+app.get("/removedToDos", function(req, res) {
   if (req.body.owner_id) {
     var owner_id = req.body.owner_id;
     var status = "removed";
@@ -245,7 +248,7 @@ app.get("/toDos", function(req, res) {
 });
 
 //get removed unvisible
-app.get("/toDos", function(req, res) {
+app.get("/unvisibledToDos", function(req, res) {
   if (req.body.owner_id) {
     var owner_id = req.body.owner_id;
     var status = "unvisible";
